@@ -45,7 +45,7 @@ def handle_interrupt(interrupt, config, st):
         
             st.markdown(f"{questions}", unsafe_allow_html=True, )
         
-        if input_text := st.text_area("Your answer"):
+        if input_text := st.text_input("Your answer"):
         
             return input_text
 
