@@ -63,6 +63,6 @@ def render_question_chat(response_content,
             st.write_stream(stream_response(response_content))
             
         else:
-            with st.expander("🚧 Processing is ongoing. Click to expand/collapse...", expanded=True):
+            with st.expander("🚧 Processing is ongoing. Click to expand/collapse...", expanded=False):
                 st.write_stream(stream_response(response_content))
             

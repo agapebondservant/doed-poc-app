@@ -69,8 +69,6 @@ with tab2:
             
     if prompt := st.selectbox("Select your state of residence",[""]+us_states.STATES,):
         
-        st.empty()
-        
         with st.spinner("Working on it..."):
 
             st.session_state.messages.append({"role": "user", "content": prompt})
