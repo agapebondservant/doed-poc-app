@@ -15,6 +15,8 @@ pypandoc_binary==1.15
 langchain_nomic==0.1.4
 chromadb==1.0.15
 langchain-chroma==0.2.4
+streamlit==1.44.1
+streamlit-js-eval==0.1.7
 #lark==1.2.2
 #lark-parser==0.12.0
 #langgraph-checkpoint 

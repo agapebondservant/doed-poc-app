@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_js_eval import streamlit_js_eval
 import os
 import torch
 torch.classes.__path__ = []
@@ -6,6 +7,8 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.schema import HumanMessage
 from io import StringIO
+from PIL import Image
+import streamlit.components.v1 as components
 from agentic import AgenticWorkflow
 from dotenv import load_dotenv
 import us_states
@@ -66,12 +69,17 @@ with tab2:
     
     if "messages2" not in st.session_state:
         st.session_state.messages2 = []
+        
+    with st.sidebar:
+        with st.expander("View Agentic Workflow"):
+            st.image("images/agentic.png")
             
-    if prompt := st.selectbox("Select your state of residence",[""]+us_states.STATES,):
+    if prompt := st.selectbox("Select your state of residence",
+                              [""] + us_states.STATES,):
         
         with st.spinner("Working on it..."):
 
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            st.session_state.messages2.append({"role": "user", "content": prompt})
             
             with st.chat_message("user"):
                 st.markdown(prompt)
