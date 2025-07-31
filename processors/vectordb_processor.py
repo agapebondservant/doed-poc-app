@@ -54,8 +54,8 @@ class VectorDbProcessor:
         self.embed_model = embed_model
         
         print(f"Initializing ChromaDb Client...")
-        # self.chroma_client = chromadb.HttpClient(host= f"http://{os.getenv('CHROMA_API_BASE')}", settings=Settings(allow_reset=True))
-        self.chroma_client = chromadb.PersistentClient(path=f"{Path.cwd()}/db")
+        self.chroma_client = chromadb.HttpClient(host= f"http://{os.getenv('CHROMA_API_BASE')}", settings=Settings(allow_reset=True))
+        # self.chroma_client = chromadb.PersistentClient(path=f"{Path.cwd()}/db")
             
         print(f"Initializing Vector Store...")
         self.vector_store = Chroma(
