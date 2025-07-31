@@ -11,10 +11,12 @@ To deploy the app:
 2. Run the script below:
 
 ```
+export APP_NAME=<your app name>
 source .env
+oc new-project $APP_NAME
 oc new-build --binary --strategy=docker --name $APP_NAME
 oc start-build $APP_NAME --from-dir . --follow
-oc new-app -i $APP_NAME:latest -e VLLM_TARGET_DEVICE=$VLLM_TARGET_DEVICE -e CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES -e GRANITE_API_KEY=$GRANITE_API_KEY -e GRANITE_API_BASE=$GRANITE_API_BASE -e TAVILY_API_KEY=$TAVILY_API_KEY
+oc new-app -i $APP_NAME:latest --env-file .env
 oc expose deploy $APP_NAME
 oc expose service $APP_NAME
 ```
