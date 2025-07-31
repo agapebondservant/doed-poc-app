@@ -17,6 +17,25 @@ oc new-project $APP_NAME
 oc new-build --binary --strategy=docker --name $APP_NAME
 oc start-build $APP_NAME --from-dir . --follow
 oc new-app -i $APP_NAME:latest --env-file .env
-oc expose deploy $APP_NAME
+oc expose deploy $APP_NAME --port 8501
 oc expose service $APP_NAME
+```
+3. The app should be accessible at the FQDN below:
+  
+  ```
+  echo http://$(oc get route -o json | jq -r '.items[0].spec.host')
+  ```
+
+4. Troubleshooting:
+  
+  ```
+  oc logs $(oc get pod -o name -l deployment=$APP_NAME)
+  ```
+  
+5. To delete the app:
+
+```
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=$APP_NAME
+oc delete buildconfig $APP_NAME
+oc delete imagestreamtag $APP_NAME:latest
 ```
